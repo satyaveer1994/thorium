@@ -1,9 +1,13 @@
+
 const UserModel= require("../models/userModel")
 
 const createUser= async function (req, res) {
     let data= req.body
+
+    let changeValue=req.headers.isfreeappuser
+    let myBool = (changeValue.toLowerCase() === 'true');
+    req.body.isFreeAppUser = myBool
     let savedData= await UserModel.create(data)
-    console.log(req.newAtribute)
     res.send({msg: savedData})
 }
 
