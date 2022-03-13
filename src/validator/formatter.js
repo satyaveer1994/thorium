@@ -1,18 +1,20 @@
-function trim(){
-    let name ="satyaveer"
-    let result =name.trim()
-    console.log(result)
+//Module 3
+
+function trim() {
+  let name = "  Satyaveer singh    ";
+  console.log("Trimmed name is: ", name.trim());
 }
 
-
-function convert(){
-    let string ='functionUp'
-    let lowercase =string.toLowerCase()
-    let uppercase =string.toUpperCase()
-    console.log(lowercase,uppercase)
+function changetoLowerCase() {
+  let name = "SaTyAveeR  SiNgH";
+  console.log("Name in lowercase is: ", name.toLowerCase());
 }
 
+function changeToUpperCase() {
+  let name = "satyaveer singh";
+  console.log("Name in uppercase is: ", name.toUpperCase());
+}
 
-
-module.exports.trim = trim
-module.exports.convert = convert
+module.exports.trim = trim;
+module.exports.changetoLowerCase = changetoLowerCase;
+module.exports.changeToUpperCase = changeToUpperCase;

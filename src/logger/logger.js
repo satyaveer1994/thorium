@@ -1,7 +1,16 @@
-function welcome (){
-console.log("Welcome to my application.I am satyaveer singh and a part of FunctionUp Thorium cohort")
+//Module 1
+let url = "https://www.google.com";
 
-
+function printMyMessage(message) {
+  console.log(message);
 }
 
-module.exports.welcome=welcome
+function welcome() {
+  console.log(
+    "Welcome to my application. I am Satyaveer and a part of FunctionUp Thorium cohort"
+  );
+}
+
+module.exports.url = url;
+module.exports.printMessage = printMyMessage;
+module.exports.printWelcomeMessage = welcome;
