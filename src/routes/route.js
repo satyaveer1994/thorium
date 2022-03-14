@@ -1,27 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const bookSchema = require("../models/userModel.js");
-
-//const UserController = require("../controllers/userController");
+const UserModel = require("../models/userModel.js");
+const UserController = require("../controllers/userController");
 
 router.get("/test-me", function (req, res) {
   res.send("My first ever api!");
 });
 
-//router.post("/createUser", UserController.createUser  )
+router.post("/createBook", UserController.createBook);
 
-//router.get("/getUsersData", UserController.getUsersData)
-
-router.post("/bookSchema", async function (req, res) {
-  let data = req.body;
-  let saveData = await bookSchema.create(data);
-  res.send({ msg: saveData });
-});
-
-router.get("/bookSchemaList", async function (req, res) {
-    
-  let allBook = await bookSchema.find();
-  res.send({ msg: allBook });
-});
+router.get("/getBookData", UserController.getBookData);
 
 module.exports = router;
