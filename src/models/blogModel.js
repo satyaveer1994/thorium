@@ -6,15 +6,28 @@ const blogSchema = new mongoose.Schema({
 
      title: {type:String},
       body: {type:String}, 
-     authorId: {mandatory, refs to author model},
-     tags: {array of string},
-      category: {string, mandatory, examples: [technology, entertainment, life style, food, fashion]}, 
-      subcategory: {array of string, examples[technology-[web development, mobile development, AI, ML etc]] },
-       createdAt, updatedAt, deletedAt: {when the document is deleted}, 
-       isDeleted: {boolean, default: false}, 
-       publishedAt: {when the blog is published}, isPublished: {boolean, default: false}
+     authorId: {type:ObjectId,ref:"Author",required:true},
 
-    
+     tags:[],
+
+     category:{type:String,enum:["tehnology","entertainment","lifeStyle","food"]},
+     subcategory:{type:String,enum:["web","mobile","crypto"]},
+
+     isPublished:{type:Boolean,default:false},
+
+     isDeleted:{type:Boolean,default:false},
+
+
+     createdAt:{timestamps:true},
+     deletedAt:{timestamps:true},
+     publishedAt:{timestamps:true},
+
+     
+
+     
+
+     
+     
 
 
 

@@ -4,9 +4,20 @@ const blogModel = require('../models/blogModel')
 
 
  const createBlog = async function (req, res){
+
+
+    try{
      let reqBlog =req.body
-     let  savedDatan = await blogModel.create(reqBlog)
+     let  savedData = await blogModel.create(reqBlog)
      res.send ({msg: Saved})
+
+    }
+
+    catch(error){
+
+        res.status(500).send(error.message)
+
+    }
  }
 
 
