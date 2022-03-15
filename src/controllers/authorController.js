@@ -1,19 +1,18 @@
-const authorModel = require('../models/authorModel')
+const authorModel = require("../models/authorModel")
 
+const createAuthor = async function (req, res) {
+    try {
+        const data = req.body
 
-
-const  creatAuthor = async function (req,res) {
-    
-    try{
-    const reqAuther = req.body;
-    const SaveData = await authorModel.create(reqAuthor)
-    res.send({msg: SaveData})
-
+        if ( !Object.keys(data).length > 0)  return res.send({ error : "Please enter data"})
+        const createdauthor = await authorModel.create(data)
+        res.status(201).send({data : createdauthor})
     }
-
-    catch(error){
-
-        res.status(500).send(error.message)
+    catch (err) {
+        console.log(err)
+        res.status(500).send({ msg: err.message })
+    }
 }
 
-}
+
+module.exports.createAuthor = createAuthor
