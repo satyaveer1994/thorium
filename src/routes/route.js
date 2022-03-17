@@ -1,31 +1,27 @@
-const express = require('express');
+//const { Router } = require('express');
+const express = require("express");
 const router = express.Router();
-const authorController = require("../controllers/authorController")
-const blogController = require("../controllers/blogController")
+const authorController = require("../controllers/authorController");
+const blogsController = require("../controllers/blogsController");
+const middleWare = require("../middleWare/auth");
 
-router.get("/test-me", function (req, res) {
-    res.send("My first ever api!")
-})
+// AUTHOR APIS
+router.post("/createAuthor", authorController.author); // create author
 
-// Phase - 1
+// ### POST /blogs
+router.post("/createBlogs", middleWare.authenticate, blogsController.blogs); // create blog
 
-// create author
-router.post("/createAuthor", authorController.createAuthor)
+// ### GET /blogs
+router.get("/getBlogs", middleWare.authenticate, blogsController.getBlog); // find blog by quary in authorid,catagory,subcatagory and tags
 
-//  create blog
-router.post("/createBlog", blogController.createBlog)
+router.put(  "/blogs/:blogId",middleWare.authenticate,middleWare.authorise,blogsController.updateBlog); // update blog by params by giving element in body
 
-//  delete blog by query
-router.delete("/deleteBlogByQuery", blogController.deleteBlogByQuery)
+router.delete("/blogs/:blogId",middleWare.authenticate,middleWare.authorise,blogsController.deleteBlog); // delete blog by using blogid in params
 
-// delete blog by path params
-router.delete("/blog/:blogId", blogController.deleteBlogByPath)
+router.delete("/blogs",middleWare.authenticate,middleWare.authorise1,blogsController.deleteByQueryParam); // delete blog by using quary
 
-//  update blog
-router.put("/updateBlog/:blogId" , blogController.updateBlog)
+// phase 2
 
-//  get blog
-router.get("/getBlogs" , blogController.getBlogs)
-
+router.post("/login", authorController.loginAuthor); // using psot api to login
 
 module.exports = router;
